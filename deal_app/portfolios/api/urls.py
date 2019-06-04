@@ -1,18 +1,16 @@
-from django.conf.urls import url
 from django.urls import path
-
-from deal_app.portfolios.api import views
+from deal_app.portfolios.api.views import PortfolioListCreateAPIView, PortfolioRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
+    path('api/<int:uuid>/',
+         view=PortfolioRetrieveUpdateDestroyAPIView.as_view(),
+         name='portfolio-rud-api'
+         ),
     path(
         '/api/',
-        view=views.PortfolioListCreateAPIView.as_view(),
-        name='flavor_rest_api'
-    ),
-    # /flavors/api/:slug/
-    url('api/<uuid>/',
-        regex=r'^api/(?P<uuid>[-\w]+)/$',
-        view=views.PortfoliosRetrieveUpdateDestroyAPIView.as_view(),
-        name='flavor_rest_api'
-        )
+        view=PortfolioListCreateAPIView.as_view(),
+        name='portfolio-create-api'
+    )
+
+
 ]

@@ -1,8 +1,7 @@
 # flavors/urls.py
-from django.conf.urls import url
 from django.urls import path
 
-from .api import views
+from deal_app.properties.api.views import Pro
 
 urlpatterns = [
     path(
@@ -13,6 +12,6 @@ urlpatterns = [
     url(
         regex=r'^api/(?P<uuid>[-\w]+)/$',
         view=views.PropertyRetrieveUpdateDestroyAPIView.as_view(),
-        name='flavor_rest_api'
+        name='property-rud-api'
     )
 ]
