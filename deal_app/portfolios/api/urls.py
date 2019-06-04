@@ -7,7 +7,7 @@ urlpatterns = [
          name='portfolio-rud-api'
          ),
     path(
-        '/api/',
+        'api/portfolio/',
         view=PortfolioListCreateAPIView.as_view(),
         name='portfolio-create-api'
     )
