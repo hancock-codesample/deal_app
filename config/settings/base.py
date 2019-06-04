@@ -9,6 +9,8 @@ ROOT_DIR = (
 )  # (deal_app/config/settings/base.py - 3 = deal_app/)
 APPS_DIR = ROOT_DIR.path("deal_app")
 
+BASE_DIR = ROOT_DIR
+
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
@@ -62,7 +64,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.messages",
-# Load order placement necessity. THIRD PARTY APP.
+    "cra_helper",  # Load order placement necessity. THIRD PARTY APP.
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
@@ -80,7 +82,6 @@ LOCAL_APPS = [
     "deal_app.users.apps.UsersConfig",
     "deal_app.properties.apps.PropertiesConfig",
     "deal_app.portfolios.apps.PortfoliosConfig"
-    # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
