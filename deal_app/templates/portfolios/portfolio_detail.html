@@ -4,20 +4,16 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block content %}
- {% block inner %}
+  {% block inner %}
     <div id="react">
-        <!-- Contents get replaced by mounted React.Component -->
-        <i class="fa fa-lg fa-spinner fa-spin"></i><br><br>
-        <i class="pending">Loading components...</i><br><br>
+      <!-- Contents get replaced by mounted React.Component -->
+      <i class="fa fa-lg fa-spinner fa-spin"></i><br><br>
+      <i class="pending">Loading components...</i><br><br>
     </div>
 
-    <script>
-        window.props = {{props|json}};
-        window.react_mount = document.getElementById('react');
-    </script>
-    <script src="/static/src/{{component}}"></script>
-{% endblock %}
-<!-- Webpack rendered JS -->
-{% render_bundle 'main' 'js' %}
+
+
+  {% endblock %}
+  <!-- Webpack rendered JS -->
 
 {% endblock content %}

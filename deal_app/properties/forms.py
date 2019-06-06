@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from deal_app.properties.models import PropertyIncome, Property, PropertyPurchase
+from deal_app.properties.models import Property
 from crispy_forms.helper import FormHelper
 
 
@@ -24,6 +24,30 @@ class PropertyCreateForm(forms.ModelForm):
             'prop_tax': _('Annual Property Tax'),
             'bedrooms': _('Number Of Bedrooms'),
             'prop_type': _('Type Of Property'),
+            'gross_monthly_rent': _('Gross Monthly Rent'),
+            'electricity': _('Electricity'),
+            'water_sewer': _('Water & Sewer'),
+            'pmi': _('PMI'),
+            'garbage': _('Garbage'),
+            'hoas': _('HOAs'),
+            'monthly_insurance': _('Monthly Insurance'),
+            'vacancy_percent': _('Vacancy (%)'),
+            'maintenance': _('Maintenance (%)'),
+            'capex': _('Capital Expenditures (%)'),
+            'management_fees_percent': _('Management Fees (%)'),
+            'annual_income_growth': _('Annual Income Growth (%)'),
+            'annual_appreciation': _('Annual Appreciation(%)'),
+            'annual_expense_growth': _('Annual Expense Growth (%)'),
+            'purchase_price': _('Purchase Price'),
+            'after_repair_value': _('Value After Repairs'),
+            'closing_cost_general': _('Closing Costs'),
+            'estimated_repair_general': _('Repairs Cost'),
+            'cash_deal': _('Is This A Cash Deal?'),
+            'down_payment_percent': _('% Down Payment'),
+            'loan_interest_rate': _('Loan interest rate'),
+            'lender_points': _('Lender Points'),
+            'misc_lender_charges': _('MISC Loan Charges'),
+            'years_amortized': _('Loan Term Length'),
         }
 
 
@@ -34,7 +58,7 @@ class PropertyIncomeForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
     class Meta:
-        model = PropertyIncome
+        model = Property
         fields = '__all__'
         exclude = ['property']
         labels = {
@@ -62,7 +86,7 @@ class PropertyPurchaseForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
     class Meta:
-        model = PropertyPurchase
+        model = Property
         fields = '__all__'
         exclude = ['property']
         labels = {

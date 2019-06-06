@@ -4,22 +4,22 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView, DeleteView, TemplateView, CreateView
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 
-from deal_app.portfolios.forms import PortfolioFrom
+from deal_app.portfolios.forms import PortfolioForm
 from deal_app.portfolios.models import Portfolio
 
 
 class PortfolioCreateView(CreateView):
-    form_class = PortfolioFrom
+    form_class = PortfolioForm
     template_name = 'portfolios/portfolio_create.html'
+    model = Portfolio
 
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super(PortfolioCreateView, self).dispatch(request, *args, **kwargs)
-
-    def get_form(self, form_class=None):
-        form = super(PortfolioCreateView, self).get_form(form_class)
-        form.fields['user'] = self.request.user
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 portfolio_create_view = PortfolioCreateView.as_view()
@@ -27,6 +27,11 @@ portfolio_create_view = PortfolioCreateView.as_view()
 
 class PortfolioListView(LoginRequiredMixin, ListView):
     model = Portfolio
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 portfolio_list_view = PortfolioListView.as_view()
@@ -41,7 +46,7 @@ portfolio_detail_view = PortfolioDetailView.as_view()
 
 class PortfolioUpdateView(LoginRequiredMixin, UpdateView):
     model = Portfolio
-    form_class = PortfolioFrom
+    form_class = PortfolioForm
 
 
 portfolio_update_view = PortfolioUpdateView.as_view()

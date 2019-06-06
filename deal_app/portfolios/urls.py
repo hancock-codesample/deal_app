@@ -21,11 +21,6 @@ urlpatterns = [
         name="list"
     ),
     path(
-        "new/",
-        view=portfolio_create_view,
-        name="new"
-    ),
-    path(
         "<str:username>/<int:pk>",
         view=portfolio_detail_view,
         name="detail"

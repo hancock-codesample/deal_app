@@ -19,10 +19,8 @@ class Portfolio(models.Model):
         default=uuid_lib.uuid4,
         editable=False)
 
+    def get_absolute_url(self):
+        return reverse('portfolios:detail', kwargs={'username': self.user.username, 'pk': self.pk})
+
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse('portfolios:detail', kwargs={'pk': self.pk})
-
-

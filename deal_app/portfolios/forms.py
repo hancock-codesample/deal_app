@@ -2,12 +2,11 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from deal_app.portfolios.models import Portfolio
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
 
 
-class PortfolioFrom(forms.ModelForm):
+class PortfolioForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(PortfolioFrom, self).__init__(*args, **kwargs)
+        super(PortfolioForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
 

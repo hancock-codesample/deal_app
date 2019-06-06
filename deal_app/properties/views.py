@@ -5,7 +5,7 @@ from django.views.generic import UpdateView, TemplateView, DeleteView, CreateVie
 from django.utils.decorators import method_decorator
 
 from deal_app.portfolios.models import Portfolio
-from deal_app.properties.models import Property, PropertyIncome, PropertyPurchase
+from deal_app.properties.models import Property
 from deal_app.properties.forms import PropertyCreateForm, PropertyIncomeForm, PropertyPurchaseForm
 
 
@@ -61,7 +61,7 @@ property_update_view = PropertyUpdateView.as_view()
 
 
 class PropertyIncomeUpdateView(LoginRequiredMixin, UpdateView):
-    model = PropertyIncome
+    model = Property
     form_class = PropertyIncomeForm
     template_name = "properties/property_income_update.html"
 
@@ -70,7 +70,7 @@ property_income_update_view = PropertyIncomeUpdateView.as_view()
 
 
 class PropertyPurchaseUpdateView(LoginRequiredMixin, UpdateView):
-    model = PropertyPurchase
+    model = Property
     form_class = PropertyPurchaseForm
     template_name = "properties/property_purchase_update.html"
 

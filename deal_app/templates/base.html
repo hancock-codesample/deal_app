@@ -1,11 +1,10 @@
 {% load static i18n %}
-{% block extrajs %} {% endblock extrajs %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>{% block title %}Deal App{% endblock title %}</title>
+  <title>{% block title %} Deal App {% endblock title %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -25,6 +24,9 @@
 
 
     <!-- Your stuff: Third-party CSS libraries go here -->
+    {% block special-css-cdns %}
+
+    {% endblock special-css-cdns %}
 
     <!-- This file stores project-specific CSS -->
 
@@ -99,6 +101,12 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {% block javascript %}
+  {% block react-scripts %}
+
+  {% endblock react-scripts %}
+
+
+
   {% load render_bundle from webpack_loader %}
 
   <!-- Bootstrap JS and its dependencies-->
